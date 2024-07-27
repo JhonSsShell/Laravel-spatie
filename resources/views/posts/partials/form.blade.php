@@ -24,3 +24,11 @@
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
 </div>
+
+<div>
+    {{ html()->label('category_id') }} {{-- Label para el id del usuario --}}
+    {{ html()->select('category_id', $categoria)->placeholder('Seleccione') }} {{-- Seleccionar en un combobox el id del usuario --}}
+    @error('category_id')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+</div>

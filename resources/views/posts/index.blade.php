@@ -8,6 +8,7 @@
             <th>Título</th>
             <th>Cuerpo</th>
             <th>Autor</th>
+            <th>Categoria</th>
             <th>Acciones</th>
         </thead>
         <tbody>
@@ -24,6 +25,9 @@
                     </td>
                     <td>
                         {{ $post->user->name }}
+                    </td>
+                    <td>
+                        {{ $post->category->name ?? "no existe nada" }}
                     </td>
                     <td>
                         <a href="{{ route('posts.edit', $post->id) }}">Modificar</a>

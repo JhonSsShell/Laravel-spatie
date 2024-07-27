@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
+use App\Models\Categories;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -26,9 +27,10 @@ class PostsController extends Controller
     {
         //
         $users = User::pluck('name', 'id');
-        return view('posts.create', compact('users'));
+        $categoria = Categories::pluck('name', 'id');
+        return view('posts.create', compact('users', 'categoria'));
     }
-
+    
     /**
      * Store a newly created resource in storage.
      */
@@ -38,7 +40,7 @@ class PostsController extends Controller
         $post = Post::create($request->all());
         return redirect()->route('posts.index');
     }
-
+    
     /**
      * Display the specified resource.
      */
@@ -46,19 +48,20 @@ class PostsController extends Controller
     {
         //
     }
-
+    
     /**
-     * Show the form for editing the specified resource.
+     * Modifica los cambios pero no los actualiza
      */
     public function edit(string $id)
     {
         $users = User::pluck('name', 'id');
+        $categoria = Categories::pluck('name', 'id');
         $post = Post::where("id", $id)->first();
-        return view('posts.edit', compact('users', 'post'));
+        return view('posts.edit', compact('users', 'post', 'categoria'));
     }
 
     /**
-     * Update the specified resource in storage.
+     * Actulizar el post dependiendo del id
      */
     public function update(PostRequest $request, string $id)
     {
@@ -68,7 +71,7 @@ class PostsController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Eliminar el post dependiendo del ID
      */
     public function destroy(string $id)
     {
@@ -77,9 +80,4 @@ class PostsController extends Controller
         return redirect()->back();
     }
 
-    // public function user(string $id){
-    //     $user = User::where("id", $id)->first();
-    //     return view();
-    //     dd($user->posts);
-    // }
 }
