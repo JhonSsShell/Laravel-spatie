@@ -83,6 +83,7 @@ class PostsController extends Controller
     public function destroy(string $id)
     {
         $post = Post::where("id", $id)->first();
+        $post->tags()->detach();
         $post->delete();
         return redirect()->back();
     }
