@@ -6,6 +6,7 @@ use App\Http\Requests\PostRequest;
 use App\Models\Categories;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller
@@ -27,8 +28,9 @@ class PostsController extends Controller
     {
         //
         $users = User::pluck('name', 'id');
+        $tags = Tag::all();
         $categoria = Categories::pluck('name', 'id');
-        return view('posts.create', compact('users', 'categoria'));
+        return view('posts.create', compact('users', 'categoria', 'tags'));
     }
     
     /**
@@ -36,9 +38,14 @@ class PostsController extends Controller
      */
     public function store(PostRequest $request)
     {
-        //
-        $post = Post::create($request->all());
-        return redirect()->route('posts.index');
+        try {
+            $post = Post::create($request->all());
+            $post->tags()->sync($request->tag_id);
+            return redirect()->route('posts.index');
+        } catch (\Exception $e) {
+            dd($e);
+        }
+        
     }
     
     /**

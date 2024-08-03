@@ -29,5 +29,9 @@ class Post extends Model
     public function category(){
         return $this->belongsTo(Categories::class);
     }
+
+    public function tags()  {
+        return $this->belongsToMany(Tag::class);
+    }
     // protected $table = 'posts';
 }

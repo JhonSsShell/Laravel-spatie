@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\PostsController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Models\Tag;
 
 Route::get('/', function () {
     return view('index');
@@ -35,4 +37,13 @@ Route::prefix('categories')->group(function () {
     Route::get('/edit/{id}', [CategoriesController::class, 'edit'])->name('categories.edit');
     Route::post('/update/{id}', [CategoriesController::class, 'update'])->name('categories.update');
     Route::post('/destroy/{id}', [CategoriesController::class, 'destroy'])->name('categories.destroy');
+});
+
+Route::prefix('tags')->group(function () {
+    Route::get('/', [TagController::class, 'index'])->name('tags.index');
+    Route::get('/create', [TagController::class, 'create'])->name('tags.create');
+    Route::post('/store', [TagController::class, 'store'])->name('tags.store');
+    Route::get('/edit/{id}', [TagController::class, 'edit'])->name('tags.edit');
+    Route::post('/update/{id}', [TagController::class, 'update'])->name('tags.update');
+    Route::post('/destroy/{id}', [TagController::class, 'destroy'])->name('tags.destroy');
 });
