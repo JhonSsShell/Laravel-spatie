@@ -6,19 +6,13 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class CategoriesRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
+    // Autorizar la validacion de los formularios
     public function authorize(): bool
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
+    // Validaciones para las categorias
     public function rules(): array
     {
         return [
@@ -26,6 +20,7 @@ class CategoriesRequest extends FormRequest
         ];
     }
 
+    // Atributos para las validaciones
     public function attributes(): array 
     {
         return [
@@ -33,6 +28,7 @@ class CategoriesRequest extends FormRequest
         ];
     }
 
+    // Mensaje que retornara la vista
     public function messages(): array
     {
         return [

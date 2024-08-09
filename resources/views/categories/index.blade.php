@@ -35,6 +35,10 @@
             @endforelse
         </tbody>
     </table>
-
-
 </div>
+<br>
+<a href="{{ route('users.index') }}">Listado de usuarios</a>
+<br>
+<a href="{{ route('posts.index') }}">Listado de posts</a>
+<br>
+<a href="{{ route('tags.index') }}">Listado de tags</a>

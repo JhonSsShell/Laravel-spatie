@@ -63,8 +63,12 @@ class PostsController extends Controller
     {
         $users = User::pluck('name', 'id');
         $categoria = Categories::pluck('name', 'id');
+        // $tags = Tag::pluck('name', 'id');
+        $tags = Tag::all();
         $post = Post::where("id", $id)->first();
-        return view('posts.edit', compact('users', 'post', 'categoria'));
+        $tagsPost = $post->tags;
+        // dd($tags->contains('1'));
+        return view('posts.edit', compact('users', 'post', 'categoria', 'tags', 'tagsPost'));
     }
 
     /**
@@ -74,6 +78,7 @@ class PostsController extends Controller
     {
         $post = Post::where("id", $id)->first();
         $post->update($request->all());
+        $post->tags()->sync($request->tag_id);
         return redirect()->route('posts.index');
     }
 

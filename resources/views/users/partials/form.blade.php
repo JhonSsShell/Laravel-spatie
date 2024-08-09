@@ -1,51 +1,30 @@
-{{-- @csrf
-<div>
-    <input type="text" placeholder="Nombre" name="name" value="{{ old('name') ? old('name') : (isset($user) ? $user->name : '') }}">
-    @error('name')
-        <div class="alert alert-danger">{{ $message }}</div>
-    @enderror
-</div>
-<div>
-    <input type="text" placeholder="Correo" name="email" value="{{ old('email') ? old('email') : (isset($user) ? $user->email : '') }}">
-    @error('email')
-        <div class="alert alert-danger">{{ $message }}</div>
-    @enderror
-</div>
-<div>
-    <input type="text" placeholder="Confirme su correo" name="email_confirmation">
-</div>
-@if (!isset($user))
-<div>
-    <input type="password" placeholder="Contraseña" name="password" value="{{ old('password') }}">
-    @error('password')
-        <div class="alert alert-danger">{{ $message }}</div>
-    @enderror
-</div>
-<div>
-    <input type="password" placeholder="Confirme su contraseña" name="password_confirmation">
-</div>
-@endif --}}
-
 {{ html()->hidden('id') }}
 
+{{-- Contenedor para el campo del nombre del usuario --}}
 <div>
-    {{ html()->label('name') }}
-    {{ html()->text('name') }}
+    {{ html()->label('Nombre') }}
+    {{ html()->text('name')->placeholder('Ingrese su nombre')}}
     @error('name')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
 </div>
 
+<br>
+
+{{-- Contenedor para el campo del correo electronico del usuario --}}
 <div>
-    {{ html()->label('email') }}
-    {{ html()->text('email')->placeholder('Ingrese su correo') }}
+    {{ html()->label('Correo electronico') }}
+    {{ html()->text('email')->placeholder('Ingrese su correo electronico') }}
     @error('email')
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
 </div>
 
+<br>
+
+{{-- Contenedor para el campo de la contraseña del usuario --}}
 <div>
-    {{ html()->label('password') }}
+    {{ html()->label('Contraseña') }}
     {{ html()->password('password')->placeholder('Ingrese su contraseña') }}
     @error('password')
         <div class="alert alert-danger">{{ $message }}</div>

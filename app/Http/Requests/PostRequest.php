@@ -6,34 +6,39 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class PostRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
+    // Autorizacion para la validacion de los formularios
     public function authorize(): bool
     {
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
+    // Metodo para establecer las validaciones
     public function rules(): array
     {
         return [
             'user_id' => 'required',
-            'title' => 'required',
-            'body' => 'required',
+            'title' => 'required|string|max:255',
+            'body' => 'required|string|max:255',
             'tag_id' => 'required|array|min:2'
         ];
     }
 
+    // Metodo para declarar los atributos de los campos
+    public function attributes(): array
+    {
+        return [
+            'title' => 'titulo',
+            'body' => 'cuerpo',
+            'password' => 'contraseña'
+        ];
+    }
+
+    // Metodo para los mensajes de las validaciones
     public function messages(): array
     {
         return [
-            'body.required' => 'El body es requerido',
-            'title.required' => 'El titulo es requerido', 
+            'body.required' => 'El :attribute es requerido',
+            'title.required' => 'El :attribute es requerido', 
             "tag_id.required" => "Minimo una etiqueta"
         ];
     }

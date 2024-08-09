@@ -1,7 +1,6 @@
 <a href="{{ route('posts.create') }}">Create post</a>
 
 <div>
-
     <table border="1">
         <thead>
             <th>ID</th>
@@ -40,8 +39,6 @@
                         {{ html()->modelForm($post)->route('posts.destroy', $post->id)->open() }}
                             <button type="submit">Eliminar</button>
                         {{ html()->closeModelForm() }}
-
-                        
                     </td>
                 </tr>
             @empty
@@ -54,6 +51,10 @@
         </tbody>
     </table>
     {{ $posts->links() }}
-
-
 </div>
+<br>
+<a href="{{ route('users.index') }}">Listado de usuarios</a>
+<br>
+<a href="{{ route('categories.index') }}">Listado de categorias</a>
+<br>
+<a href="{{ route('tags.index') }}">Listado de tags</a>

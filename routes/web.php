@@ -11,6 +11,7 @@ Route::get('/', function () {
     return view('index');
 });
 
+// Manejo de las rutas utilizando un prefijo para los usuarios
 Route::prefix('users')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('users.index');
     Route::get('/create', [UserController::class, 'create'])->name('users.create');
@@ -21,6 +22,7 @@ Route::prefix('users')->group(function () {
     Route::get('/{id}/posts', [UserController::class, 'posts'])->name('users.posts');
 });
 
+// Manejo de las rutas utilizando un prefijo para los posts
 Route::prefix('posts')->group(function () {
     Route::get('/', [PostsController::class, 'index'])->name('posts.index');
     Route::get('/create', [PostsController::class, 'create'])->name('posts.create');
@@ -30,6 +32,7 @@ Route::prefix('posts')->group(function () {
     Route::post('/destroy/{id}', [PostsController::class, 'destroy'])->name('posts.destroy');
 });
 
+// Manejo de las rutas utilizando un prefijo para las categorias
 Route::prefix('categories')->group(function () {
     Route::get('/', [CategoriesController::class, 'index'])->name('categories.index');
     Route::get('/create', [CategoriesController::class, 'create'])->name('categories.create');
@@ -39,6 +42,7 @@ Route::prefix('categories')->group(function () {
     Route::post('/destroy/{id}', [CategoriesController::class, 'destroy'])->name('categories.destroy');
 });
 
+// Manejo de las rutas utilizando un prefijo para las tags
 Route::prefix('tags')->group(function () {
     Route::get('/', [TagController::class, 'index'])->name('tags.index');
     Route::get('/create', [TagController::class, 'create'])->name('tags.create');
@@ -46,4 +50,5 @@ Route::prefix('tags')->group(function () {
     Route::get('/edit/{id}', [TagController::class, 'edit'])->name('tags.edit');
     Route::post('/update/{id}', [TagController::class, 'update'])->name('tags.update');
     Route::post('/destroy/{id}', [TagController::class, 'destroy'])->name('tags.destroy');
+    Route::get('/{id}/posts', [TagController::class, 'post'])->name('tags.posts');
 });

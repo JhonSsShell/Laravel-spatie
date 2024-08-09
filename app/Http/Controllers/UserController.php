@@ -8,33 +8,30 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // Metodo index del UserController
     public function index()
     {
-        //
+        // Obtener todos los usuarios
         $users = User::all();
+        
+        // Retorna a la vista de la tabla con la cantidad de usuarios
         return view('users.index', compact('users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
+    // Metodo create del UserController (Redirije al formulario)
     public function create()
     {
-        //
+        // Retorna la vista del formulario para crear un nuevo usuario
         return view('users.create');
     }
     
-    /**
-     * Store a newly created resource in storage.
-     */
+    // Metodo store, para crear un nuevo usuario en la base de datos, que pasa por una validacion
     public function store(UserRequest $request)
     {
         //
         $usuario = User::create($request->all());
-        return redirect()->route("users.edit", ["id" => $usuario->id]);
+        return redirect()->route("users.index");
     }
     
     /**
@@ -50,9 +47,7 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
         $user = User::where("id", $id)->first();
-        // dd($user->posts);
         return view("users.edit", compact('user'));
     }
     
@@ -61,13 +56,8 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, string $id)
     {
-        //
-        // dd($this()->all());
         $user = User::where("id", $id)->first();
-        // $user->name = $request->name;
-        // $user->email = $request->email;
         $user->update($request->all());
-        // return view("users.edit", compact("user"));
         return redirect()->back();
     }
 
