@@ -19,7 +19,8 @@ class PostRequest extends FormRequest
             'user_id' => 'required',
             'title' => 'required|string|max:255',
             'body' => 'required|string|max:255',
-            'tag_id' => 'required|array|min:2'
+            'tag_id' => 'required|array|min:2',
+            'archivo' => 'required'
         ];
     }
 
@@ -29,7 +30,8 @@ class PostRequest extends FormRequest
         return [
             'title' => 'titulo',
             'body' => 'cuerpo',
-            'password' => 'contraseña'
+            'password' => 'contraseña',
+            'archivo' => 'archivo'
         ];
     }
 
@@ -39,7 +41,8 @@ class PostRequest extends FormRequest
         return [
             'body.required' => 'El :attribute es requerido',
             'title.required' => 'El :attribute es requerido', 
-            "tag_id.required" => "Minimo una etiqueta"
+            "tag_id.required" => "Minimo una etiqueta",
+            'archivo.required' => 'Debes subir algun :attribute'
         ];
     }
 }

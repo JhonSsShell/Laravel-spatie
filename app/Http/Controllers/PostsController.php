@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
 use App\Models\Categories;
+use App\Models\Images;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostsController extends Controller
 {
@@ -36,7 +38,23 @@ class PostsController extends Controller
     public function store(PostRequest $request)
     {
         try {
+            // Toma el modelo
             $post = Post::create($request->all());
+
+
+            // Toma la cantidad de archivos
+            $files = $request->archivo;
+            $data = [];
+            foreach ($files as $file) {
+                $img = Images::create([
+                    'name' => $file->getClientOriginalName(),
+                    'path' => $file->store('/', 'post')
+                ]);
+                array_push($data, $img->id);
+            }
+
+            $post->images()->sync($data);
+
             $post->tags()->sync($request->tag_id);
             return redirect()->route('posts.index');
         } catch (\Exception $e) {

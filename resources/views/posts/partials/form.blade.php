@@ -48,3 +48,10 @@
         <div class="alert alert-danger">{{ $message }}</div>
     @enderror
 </div>
+<br>
+<div>
+    {{ html()->file('archivo[]')->multiple()}}
+    @error('archivo')
+        <div class="alert alert-danger">{{ $message }}</div>
+    @enderror
+</div>

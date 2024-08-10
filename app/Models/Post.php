@@ -33,5 +33,8 @@ class Post extends Model
     public function tags()  {
         return $this->belongsToMany(Tag::class);
     }
-    // protected $table = 'posts';
+
+    public function images()  {
+        return $this->belongsToMany(Images::class);
+    }
 }
