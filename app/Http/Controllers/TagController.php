@@ -4,58 +4,45 @@ namespace App\Http\Controllers;
 
 use App\Models\Tag;
 use App\Http\Requests\TagRequest;
-use App\Http\Requests\UpdateTagRequest;
+use App\Models\Post;
 
 use function PHPUnit\Framework\returnSelf;
 
 class TagController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // Metodo para listar todas las tags
     public function index()
     {
-        $tags = Tag::all();
+        $tags = Tag::paginate(5);
         return view('tags.index', compact('tags'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    // Metodo que retornara la vista para crear una tag
     public function create()
     {
         return view('tags.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // Metodo para crear una nueva tag
     public function store(TagRequest $request)
     {
         $tag = Tag::create($request->all());
         return redirect()->route('tags.create');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Tag $tag)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    // Metodo para editar los datos de una tag
     public function edit(string $id)
     {
         $tag = Tag::where('id', $id)->first();
         return view('tags.edit', compact('tag'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    // Metodo para actualizar los datos de la tag
     public function update(TagRequest $request, string $id)
     {
         $tag = Tag::where('id', $id)->first();
@@ -63,9 +50,7 @@ class TagController extends Controller
         return redirect()->route('tags.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    // Metodo para eliminar la tag
     public function destroy(string $id)
     {
         $tag = Tag::where('id', $id)->first();
@@ -73,7 +58,10 @@ class TagController extends Controller
         return redirect()->back();
     }
 
+    // Metodo para listar las tags que estan asociadas a ese post
     public function posts(string $id){
-        
+        $post = Post::where("id", $id)->first();
+        $tags = $post->tags;
+        return view("posts/tags", compact("post", "tags"));
     }
 }

@@ -32,7 +32,8 @@ class CategoriesRequest extends FormRequest
     public function messages(): array
     {
         return [
-            "name.required" => "La :attribute es obligatoria"
+            "name.required" => "La :attribute es obligatoria",
+            "name.max" => "Maximo 255 caracteres en el nombre de la :attribute"
         ];
     }
 }

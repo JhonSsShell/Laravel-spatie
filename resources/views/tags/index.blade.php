@@ -31,6 +31,7 @@
             @endforelse
         </tbody>
     </table>
+    {{ $tags->links() }}
 </div>
 <br>
 <a href="{{ route('users.index') }}">Listado de Usuarios</a>

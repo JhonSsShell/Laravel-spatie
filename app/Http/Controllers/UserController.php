@@ -12,7 +12,7 @@ class UserController extends Controller
     public function index()
     {
         // Obtener todos los usuarios
-        $users = User::all();
+        $users = User::paginate(5);
         
         // Retorna a la vista de la tabla con la cantidad de usuarios
         return view('users.index', compact('users'));

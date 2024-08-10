@@ -35,6 +35,7 @@
             @endforelse
         </tbody>
     </table>
+    {{ $categories->links() }}
 </div>
 <br>
 <a href="{{ route('users.index') }}">Listado de usuarios</a>

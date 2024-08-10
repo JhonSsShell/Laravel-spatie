@@ -35,9 +35,10 @@
                         @endforeach
                     </td>
                     <td>
+                        <a href="{{ route('tags.posts', $post->id) }}">Tags</a>
                         <a href="{{ route('posts.edit', $post->id) }}">Modificar</a>
                         {{ html()->modelForm($post)->route('posts.destroy', $post->id)->open() }}
-                            <button type="submit">Eliminar</button>
+                            <button type="submit">Eliminar</button> </td></tr>
                         {{ html()->closeModelForm() }}
                     </td>
                 </tr>

@@ -31,6 +31,7 @@
             @endforeach
         </tbody>
     </table>
+    {{ $users->links() }}
 </div>
 
 <a href="{{ route('posts.index') }}">Listado de posts</a>

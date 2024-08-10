@@ -11,9 +11,7 @@ use Illuminate\Http\Request;
 
 class PostsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // Metodo para listar los posts
     public function index()
     {
         //
@@ -21,21 +19,20 @@ class PostsController extends Controller
         return view('posts.index', compact('posts'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    // Metodo que retorna la visat del formulario
     public function create()
     {
-        //
+        // Esto es para hacer un comboBox
         $users = User::pluck('name', 'id');
+
         $tags = Tag::all();
+
+        // Esto es para hacer un comboBox
         $categoria = Categories::pluck('name', 'id');
         return view('posts.create', compact('users', 'categoria', 'tags'));
     }
     
-    /**
-     * Store a newly created resource in storage.
-     */
+    // Metodo para crear el post en la base de datos
     public function store(PostRequest $request)
     {
         try {
@@ -48,26 +45,21 @@ class PostsController extends Controller
         
     }
     
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
         //
     }
     
-    /**
-     * Modifica los cambios pero no los actualiza
-     */
+    // Metodo para editar los datos del post, por id
     public function edit(string $id)
     {
+        // Esto es para hacer un comboBox
         $users = User::pluck('name', 'id');
         $categoria = Categories::pluck('name', 'id');
-        // $tags = Tag::pluck('name', 'id');
+
         $tags = Tag::all();
         $post = Post::where("id", $id)->first();
         $tagsPost = $post->tags;
-        // dd($tags->contains('1'));
         return view('posts.edit', compact('users', 'post', 'categoria', 'tags', 'tagsPost'));
     }
 

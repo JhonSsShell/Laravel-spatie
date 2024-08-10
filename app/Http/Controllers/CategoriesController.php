@@ -7,52 +7,40 @@ use App\Http\Requests\CategoriesRequest;
 
 class CategoriesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // Metodo index para listar todas las categorias
     public function index()
     {
-        $categories = Categories::all();
+        $categories = Categories::paginate(5);
         return view('categories.index', compact('categories'));
     }
     
-    /**
-     * Show the form for creating a new resource.
-     */
+    // Metodo create para estar en la vista del formulario
     public function create()
     {
         return view('categories.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+    // Metodo para crear la categoria
     public function store(CategoriesRequest $request)
     {
         $categoria = Categories::create($request->all());
         return redirect()->route('categories.create');
     }
 
-    /**
-     * Display the specified resource.
-     */
+    
     public function show(Categories $categories)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+    // Metodo para editar los datos de la categoria por id
     public function edit(string $id)
     {
         $categoria = Categories::where("id", $id)->first();
         return view('categories.edit', compact('categoria'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+    // Metodo para actualizar la categoria
     public function update(CategoriesRequest $request ,string $id)
     {
         $categoria = Categories::where("id", $id)->first();
@@ -60,9 +48,7 @@ class CategoriesController extends Controller
         return redirect()->route('categories.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+    // Metodo para eliminar la categoria por id
     public function destroy(string $id)
     {
         $categoria = Categories::where("id", $id)->first();

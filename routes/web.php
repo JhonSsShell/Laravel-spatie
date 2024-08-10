@@ -50,5 +50,5 @@ Route::prefix('tags')->group(function () {
     Route::get('/edit/{id}', [TagController::class, 'edit'])->name('tags.edit');
     Route::post('/update/{id}', [TagController::class, 'update'])->name('tags.update');
     Route::post('/destroy/{id}', [TagController::class, 'destroy'])->name('tags.destroy');
-    Route::get('/{id}/posts', [TagController::class, 'post'])->name('tags.posts');
+    Route::get('/{id}/posts', [TagController::class, 'posts'])->name('tags.posts');
 });

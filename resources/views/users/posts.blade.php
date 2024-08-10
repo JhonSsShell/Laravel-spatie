@@ -1,3 +1,4 @@
+<a href="{{ route('users.index') }}">Volver al listado de los usuarios</a>
 
 <div>
 
