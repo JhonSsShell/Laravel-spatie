@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoriesController;
-use App\Http\Controllers\PostsController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
@@ -24,12 +24,12 @@ Route::prefix('users')->group(function () {
 
 // Manejo de las rutas utilizando un prefijo para los posts
 Route::prefix('posts')->group(function () {
-    Route::get('/', [PostsController::class, 'index'])->name('posts.index');
-    Route::get('/create', [PostsController::class, 'create'])->name('posts.create');
-    Route::post('/store', [PostsController::class, 'store'])->name('posts.store');
-    Route::get('/edit/{id}', [PostsController::class, 'edit'])->name('posts.edit');
-    Route::post('/update/{id}', [PostsController::class, 'update'])->name('posts.update');
-    Route::post('/destroy/{id}', [PostsController::class, 'destroy'])->name('posts.destroy');
+    Route::get('/', [PostController::class, 'index'])->name('posts.index');
+    Route::get('/create', [PostController::class, 'create'])->name('posts.create');
+    Route::post('/store', [PostController::class, 'store'])->name('posts.store');
+    Route::get('/edit/{id}', [PostController::class, 'edit'])->name('posts.edit');
+    Route::post('/update/{id}', [PostController::class, 'update'])->name('posts.update');
+    Route::post('/destroy/{id}', [PostController::class, 'destroy'])->name('posts.destroy');
 });
 
 // Manejo de las rutas utilizando un prefijo para las categorias

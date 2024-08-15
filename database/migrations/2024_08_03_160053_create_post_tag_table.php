@@ -7,25 +7,25 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Crear la migracion a la base de datos
      */
     public function up(): void
     {
-        Schema::create('images_post', function (Blueprint $table) {
+        Schema::create('post_tag', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('image_id');
             $table->unsignedBigInteger('post_id');
-            $table->foreign('image_id')->references('id')->on('images');
+            $table->unsignedBigInteger('tag_id');
             $table->foreign('post_id')->references('id')->on('posts');
+            $table->foreign('tag_id')->references('id')->on('tags');
             $table->timestamps();
         });
     }
 
     /**
-     * Reverse the migrations.
+     * Revertir la migracion si existe la tabla en la base de datos
      */
     public function down(): void
     {
-        Schema::dropIfExists('images_post');
+        Schema::dropIfExists('post_tag');
     }
 };

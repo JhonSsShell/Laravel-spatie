@@ -20,6 +20,10 @@ class Post extends Model
         'user_id',
         'category_id'
     ];
+    
+    public function archivos(){
+      return $this->hasMany(Image::class);
+    }
 
     public function user()
     {
@@ -27,14 +31,11 @@ class Post extends Model
     }
 
     public function category(){
-        return $this->belongsTo(Categories::class);
+        return $this->belongsTo(Category::class);
     }
 
     public function tags()  {
         return $this->belongsToMany(Tag::class);
     }
 
-    public function images()  {
-        return $this->belongsToMany(Images::class);
-    }
 }

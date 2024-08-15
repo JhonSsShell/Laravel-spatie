@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Categories;
+use App\Models\Category;
 use App\Http\Requests\CategoriesRequest;
 
 class CategoriesController extends Controller
@@ -10,7 +10,7 @@ class CategoriesController extends Controller
     // Metodo index para listar todas las categorias
     public function index()
     {
-        $categories = Categories::paginate(5);
+        $categories = Category::paginate(5);
         return view('categories.index', compact('categories'));
     }
     
@@ -23,27 +23,22 @@ class CategoriesController extends Controller
     // Metodo para crear la categoria
     public function store(CategoriesRequest $request)
     {
-        $categoria = Categories::create($request->all());
+        $categoria = Category::create($request->all());
         return redirect()->route('categories.create');
     }
 
     
-    public function show(Categories $categories)
-    {
-        //
-    }
-
     // Metodo para editar los datos de la categoria por id
     public function edit(string $id)
     {
-        $categoria = Categories::where("id", $id)->first();
+        $categoria = Category::where("id", $id)->first();
         return view('categories.edit', compact('categoria'));
     }
 
     // Metodo para actualizar la categoria
     public function update(CategoriesRequest $request ,string $id)
     {
-        $categoria = Categories::where("id", $id)->first();
+        $categoria = Category::where("id", $id)->first();
         $categoria->update($request->all());
         return redirect()->route('categories.index');
     }
@@ -51,7 +46,7 @@ class CategoriesController extends Controller
     // Metodo para eliminar la categoria por id
     public function destroy(string $id)
     {
-        $categoria = Categories::where("id", $id)->first();
+        $categoria = Category::where("id", $id)->first();
         $categoria->delete();
         return redirect()->back();
     }

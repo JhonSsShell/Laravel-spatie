@@ -43,6 +43,7 @@ return [
             'visibility' => 'public',
             'throw' => false,
         ],
+        
         'post' => [
             'driver' => 'local',
             'root' => storage_path('app/public/post'),

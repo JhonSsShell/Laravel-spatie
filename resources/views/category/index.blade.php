@@ -9,19 +9,19 @@
             <th>Acciones</th>
         </thead>
         <tbody>
-            @forelse ($categories as $categorie)
+            @forelse ($categories as $category)
                 <tr>
                     <td>
-                        {{ $categorie->id }}
+                        {{ $category->id }}
                     </td>
                     <td>
-                        {{ $categorie->name }}
+                        {{ $category->name }}
                     </td>
                     <td>
-                        <a href="{{ route('categories.edit', $categorie->id) }}">
+                        <a href="{{ route('categories.edit', $category->id) }}">
                             Modificar
                         </a>
-                        {{ html()->modelForm($categorie)->route('categories.destroy', $categorie->id)->open() }}
+                        {{ html()->modelForm($category)->route('categories.destroy', $categorye->id)->open() }}
                             <button type="submit">Eliminar</button>
                         {{ html()->closeModelForm() }}
                     </td>
@@ -35,7 +35,7 @@
             @endforelse
         </tbody>
     </table>
-    {{ $categories->links() }}
+    {{ $category->links() }}
 </div>
 <br>
 <a href="{{ route('users.index') }}">Listado de usuarios</a>

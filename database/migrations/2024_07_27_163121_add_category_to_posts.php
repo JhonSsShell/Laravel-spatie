@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     * Run the migrations.
+     * Crear migracion a la base de datos
      */
     public function up(): void
     {
@@ -18,7 +18,7 @@ return new class extends Migration
     }
 
     /**
-     * Reverse the migrations.
+     * Revertir si exite la tabla en la base de datos
      */
     public function down(): void
     {
