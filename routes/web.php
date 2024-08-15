@@ -2,9 +2,12 @@
 
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\RolController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PermisoController;
+use App\Models\Permiso;
 use App\Models\Tag;
 
 Route::get('/', function () {
@@ -52,3 +55,24 @@ Route::prefix('tags')->group(function () {
     Route::post('/destroy/{id}', [TagController::class, 'destroy'])->name('tags.destroy');
     Route::get('/{id}/posts', [TagController::class, 'posts'])->name('tags.posts');
 });
+
+Route::prefix('roles')->group(function () {
+    Route::get('/', [RolController::class, 'index'])->name('roles.index');
+    Route::get('/create', [RolController::class, 'create'])->name('roles.create');
+    Route::post('/store', [RolController::class, 'store'])->name('roles.store');
+    Route::get('/edit/{id}', [RolController::class, 'edit'])->name('roles.edit');
+    Route::post('/update/{id}', [RolController::class, 'update'])->name('roles.update');
+    Route::post('/destroy/{id}', [RolController::class, 'destroy'])->name(('roles.destroy'));
+});
+
+Route::prefix('permisos')->group(function () {
+    Route::get('/', [PermisoController::class, 'index'])->name('permisos.index');
+    Route::get('/create', [PermisoController::class, 'create'])->name('permisos.create');
+    Route::post('/store', [PermisoController::class, 'store'])->name('permisos.store');
+    Route::get('/edit/{id}', [PermisoController::class, 'edit'])->name('permisos.edit');
+    Route::post('/update/{id}', [PermisoController::class, 'update'])->name('permisos.update');
+    Route::post('/destroy/{id}', [PermisoController::class, 'destroy'])->name(('permisos.destroy'));
+});
+
+Auth::routes();
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
