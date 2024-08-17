@@ -11,13 +11,13 @@ class CategoriesController extends Controller
     public function index()
     {
         $categories = Category::paginate(5);
-        return view('categories.index', compact('categories'));
+        return view('category.index', compact('categories'));
     }
     
     // Metodo create para estar en la vista del formulario
     public function create()
     {
-        return view('categories.create');
+        return view('category.create');
     }
 
     // Metodo para crear la categoria
@@ -32,7 +32,7 @@ class CategoriesController extends Controller
     public function edit(string $id)
     {
         $categoria = Category::where("id", $id)->first();
-        return view('categories.edit', compact('categoria'));
+        return view('category.edit', compact('categoria'));
     }
 
     // Metodo para actualizar la categoria
@@ -40,7 +40,7 @@ class CategoriesController extends Controller
     {
         $categoria = Category::where("id", $id)->first();
         $categoria->update($request->all());
-        return redirect()->route('categories.index');
+        return redirect()->route('category.index');
     }
 
     // Metodo para eliminar la categoria por id

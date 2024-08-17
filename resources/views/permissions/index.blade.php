@@ -1,9 +1,7 @@
 <x-app-layout>
     @section('content')
-    
         <div class="container">
             <a href="{{ route('permisos.create') }}">Crear permisos</a>
-        
             <table border="1" class="table">
                 <thead>
                     <th>ID</th>
@@ -20,11 +18,11 @@
                                 {{ $permiso->name }}
                             </td>
                             <td>
-                                <a href="{{ route('permisos.edit', $permiso->id) }}" class="btn btn-primary">
+                                <a href="{{ route('permisos.edit', $permiso->id) }}" class="btn btn-primary btn-sm">
                                     Modificar
                                 </a>
                                 {{ html()->modelForm($permiso)->route('permisos.destroy', $permiso->id)->open() }}
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                                 {{ html()->closeModelForm() }}
                             </td>
                         </tr>
@@ -47,8 +45,7 @@
             <br>
             <a href="{{ route('roles.index') }}">Listado de roles</a>
             <br>
+            <a href="{{ route('categories.index') }}">Listado de categorias</a>
         </div>
     @endsection
 </x-app-layout>
-
-{{-- <a href="{{ route('') }}">Listado de permisos</a> --}}

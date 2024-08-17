@@ -7,9 +7,11 @@
 
             <table border="1" class="table">
                 <thead>
-                    <th>ID</th>
-                    <th>Nombre categoria</th>
-                    <th>Acciones</th>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre categoria</th>
+                    <th scope="col">Acciones</th>
+                  </tr>
                 </thead>
                 <tbody>
                     @forelse ($roles as $rol)
@@ -21,11 +23,11 @@
                                 {{ $rol->name }}
                             </td>
                             <td>
-                                <a href="{{ route('roles.edit', $rol->id) }}" class="btn btn-primary">
+                                <a href="{{ route('roles.edit', $rol->id) }}" class="btn btn-primary btn-sm">
                                     Modificar
                                 </a>
                                 {{ html()->modelForm($rol)->route('roles.destroy', $rol->id)->open() }}
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                                 {{ html()->closeModelForm() }}
                             </td>
                         </tr>
@@ -44,7 +46,11 @@
             <br>
             <a href="{{ route('posts.index') }}">Listado de posts</a>
             <br>
+            <a href="{{ route('categories.index') }}">Listado de categorias</a>
+            <br>
             <a href="{{ route('tags.index') }}">Listado de tags</a>
+            <br>
+            <a href="{{ route('permisos.index') }}">Listado de permisos</a>
             <br>
         </div>
         

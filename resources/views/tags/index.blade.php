@@ -1,10 +1,17 @@
-<a href="{{ route('tags.create') }}">Create tags</a>
+<x-app-layout>
+    @section('content')
+    @endsection
+</x-app-layout>
 
-<div>
-    <table border="1">
+
+<div class="container">
+    <a href="{{ route('tags.create') }}">Create tags</a>
+    <table border="1" class="table table-hover">
         <thead>
-            <th>ID</th>
-            <th>Nombre tag</th>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre tag</th>
+          </tr>
         </thead>
         <tbody>
             @forelse ($tags as $tag)
@@ -16,9 +23,9 @@
                         {{ $tag->name }}
                     </td>
                     <td>
-                        <a href="{{ route('tags.edit', $tag->id) }}">Modificar</a>
+                        <a href="{{ route('tags.edit', $tag->id) }}" class="btn btn-primary btn-sm">Modificar</a>
                         {{ html()->modelForm($tag)->route('tags.destroy', $tag->id)->open() }}
-                            <button type="submit">Eliminar</button>
+                          <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                         {{ html()->closeModelForm() }}
                     </td>
                 </tr>
@@ -32,10 +39,14 @@
         </tbody>
     </table>
     {{ $tags->links() }}
+    <br>
+    <a href="{{ route('users.index') }}">Listado de Usuarios</a>
+    <br>
+    <a href="{{ route('posts.index') }}">Listado de posts</a>
+    <br>
+    <a href="{{ route('categories.index') }}">Listado de categorias</a>
+    <br>
+    <a href="{{ route('roles.index') }}">Listado de roles</a>
+    <br>
+    <a href="{{ route('permisos.index') }}">Listado de permisos</a>
 </div>
-<br>
-<a href="{{ route('users.index') }}">Listado de Usuarios</a>
-<br>
-<a href="{{ route('posts.index') }}">Listado de posts</a>
-<br>
-<a href="{{ route('categories.index') }}">Listado de categorias</a>
